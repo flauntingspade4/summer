@@ -1,0 +1,18 @@
+[package]
+name = "summer"
+version = "0.1.0"
+edition = "2018"
+resolver = "2"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "^0.2"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+bevy = {version = "^0.5", default-features = false, features = ["bevy_wgpu", "bevy_winit", "render", "x11"]}
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+bevy = {version = "^0.5", default-features = false, features = ["bevy_winit", "render"]}
+bevy_webgl2 = "^0.5"
